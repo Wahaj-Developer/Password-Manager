@@ -115,3 +115,26 @@ if(confirmDelete) {
           <span>Pass</span><span className="text-green-700">Op&gt;</span>
         </h1>
         <p className='text-center text-lg text-green-900'>Your own password manager</p>
+        <div className="flex flex-col  w-full justify-between gap-8">
+          <input value={form.site} onChange={handelChange} placeholder='Enter website URL' className='w-full rounded-full p-4 py-1 bg-white border border-green-500 outline-none' type="text" name='site' id='site' />
+          <div className="flex w-full  justify-between gap-4">
+            <input value={form.username} onChange={handelChange} placeholder='Enter user name' className=' w-full rounded-full p-4 py-1 bg-white border border-green-500 outline-none' type="text" name='username' id='username' />
+            <div className="relative items-center">
+
+
+              <input ref={passwordRef} value={form.password} onChange={handelChange} placeholder='Enter password' className=' w-full rounded-full p-4 py-1 bg-white border border-green-500 outline-none' type="password" name='password' id='password' />
+
+              <span className="absolute right-[3px] top-[4px] cursor-pointer items-center" onClick={showPassword}>
+                <img ref={ref} className='p-1' width={25} src="/eye.png" alt="" />
+              </span>
+            </div>
+
+          </div>
+          <button onClick={savePassword} className='flex justify-center items-center text-green-700 border-2 hover:border-none px-4 border-green-700 hover:bg-green-700 hover:text-white rounded-full w-fit p-2 '>
+            <lord-icon 
+              src="https://cdn.lordicon.com/sbnjyzil.json"
+              trigger="hover"
+               stroke="bold">
+            </lord-icon>
+            Add Password</button>
+        </div>
