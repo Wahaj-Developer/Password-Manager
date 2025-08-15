@@ -181,4 +181,62 @@ if(confirmDelete) {
                       </div>
 
 
+
+
+                    </div>
+                  </td>
+                  <td className='py-2 border border-white text-center w-32'>
+                    <div className="flex items-center justify-center ">
+                     {"*".repeat(item.password.length)}
+                      <div className='lordiconcopy size-7 cursor-pointer' onClick={() => { copyText(item.password) }}>
+                        <lord-icon
+                          style={{ "width": "25px", "height": "25px", "paddingTop": "3px", "paddingLeft": "3px" }}
+                          src="https://cdn.lordicon.com/jgudtnhq.json"
+                          trigger="hover"
+                        >
+                        </lord-icon>
+                      </div>
+                    </div>
+                  </td>
+                  <td className='py-2 border border-white text-center w-32'>
+                      <span className='cursor-pointer mx-1' onClick={()=>{editPassword(item.id)}}>
+                      <lord-icon
+                        style={{ "width": "25px", "height": "25px" }}
+                        src="https://cdn.lordicon.com/exymduqj.json"
+                        trigger="hover"
+                        stroke="bold"
+                        >
+                      </lord-icon>
+                    </span>
+                    <span className='cursor-pointer mx-1' onClick={()=>{deletePassword(item.id)}}>
+                      <lord-icon
+                        style={{ "width": "25px", "height": "25px" }}
+                        src="https://cdn.lordicon.com/jzinekkv.json"
+                        trigger="hover"
+                        stroke="bold"
+                        >
+                      </lord-icon>
+                    </span>
+                  </td>
+                </tr>
+              })}
+            </tbody>
+          </table>}
+        </div>
+
+      </div>
+
+
+
+    </>
+  )
+}
+
+export default Manager
+
+
+
+
+
+
                       
