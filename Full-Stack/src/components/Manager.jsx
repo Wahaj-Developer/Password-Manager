@@ -24,3 +24,121 @@ let req = await fetch("http://localhost:3000/");
    
 
   }, [])
+
+  
+  
+  const copyText = (text) => {
+    toast('copy to clipboard!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick:false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+
+    });
+    navigator.clipboard.writeText(text)
+  }
+
+
+  const showPassword = () => {
+    passwordRef.current.type = "text"
+    if (ref.current.src.includes('/eyecross.png')) {
+      ref.current.src = '/eye.png';
+      passwordRef.current.type = "text"
+    }
+    else {
+      ref.current.src = '/eyecross.png';
+      passwordRef.current.type = "password"
+    }
+
+  }
+
+
+  const savePassword = async () => {
+if (form.site.length > 3 && form.username.length > 3 && form.password.length > 3) {
+
+    await fetch("http://localhost:3000/", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ id: form.id})
+    }) 
+
+    setpasswordArray([...passwordArray, {...form , id: uuidv4()}]);
+    
+     await fetch("http://localhost:3000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ ...form, id: uuidv4() })
+    }) 
+
+   
+
+ setform({ site: "", username: "", password: "" });
+  }
+  
+  else{
+toast.error("Please fill all fields");
+
+  }
+
+  }
+
+  const deletePassword = async (id) => {
+let confirmDelete = confirm("Are you sure you want to delete this password?");
+if(confirmDelete) {
+     setpasswordArray(passwordArray.filter(item => item.id!== id));
+        let res = await fetch("http://localhost:3000/", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ id})
+    }) 
+  //   localStorage.setItem('passwords', JSON.stringify(passwordArray.filter(item => item.id !== id)));
+    
+}
+
+
+  }
+
+  const editPassword = (id) => {
+
+     setform({...passwordArray.filter(i=>i.id===id)[0], id: id} );
+     setpasswordArray(passwordArray.filter(item => item.id!== id));
+    
+
+
+  }
+
+  const handelChange = (e) => {
+
+    setform({ ...form, [e.target.name]: e.target.value })
+
+  }
+
+
+
+  return (
+    <>
+    <ToastContainer
+  position="top-right"
+  autoClose={5000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick={false}  // Changed from false to true
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="dark"
+  transition="Bounce"
+/>
+
+
