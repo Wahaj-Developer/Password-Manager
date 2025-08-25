@@ -175,3 +175,46 @@ if(confirmDelete) {
         </div>
 
 
+        <div className="password">
+          <h2 className='font-bold text-2xl py-4'>Yor Passwords</h2>
+          {passwordArray.length === 0 && <p className='text-center text-lg text-green-900'>No passwords saved yet</p>}
+          {passwordArray.length != 0 && <table className="table-auto w-full rounded-md overflow-hidden mb-10">
+            <thead className='text-white bg-green-800'>
+              <tr>
+                <th className='py-2'>Site</th>
+                <th className='py-2'>Username</th>
+                <th className='py-2'>Password</th>
+                <th className='py-2'>Actions</th>
+              </tr>
+            </thead>
+            <tbody className='bg-green-100'>
+              {passwordArray.map((item, index) => {
+                return <tr key={index}>
+
+                  <td className='py-2 border border-white text-center w-32'>
+                    <div className="flex items-center justify-center ">
+                      <a href={item.site} target='_blank'>{item.site}</a>
+                      <div className='lordiconcopy size-7 cursor-pointer' onClick={() => { copyText(item.site) }}>
+                        <lord-icon
+                          style={{ "width": "25px", "height": "25px", "paddingTop": "3px", "paddingLeft": "3px" }}
+                          src="https://cdn.lordicon.com/jgudtnhq.json"
+                          trigger="hover"
+                        >
+                        </lord-icon>
+                      </div>
+                    </div>
+                  </td>
+                  <td className='py-2 border border-white text-center w-32'>
+                    <div className="flex items-center justify-center ">
+                      {item.username}
+                      <div className='lordiconcopy size-7 cursor-pointer' onClick={() => { copyText(item.username) }}>
+                        <lord-icon
+                          style={{ "width": "25px", "height": "25px", "paddingTop": "3px", "paddingLeft": "3px" }}
+                          src="https://cdn.lordicon.com/jgudtnhq.json"
+                          trigger="hover"
+                        >
+                        </lord-icon>
+                      </div>
+                    </div>
+                  </td>
+
